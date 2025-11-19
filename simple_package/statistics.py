@@ -22,3 +22,48 @@
 ## 5) Also, do something and/or throw an exception/message if the
 ##    numpy and matplotlib packages are not installed.
 ##
+
+try:
+    import numpy as np
+except ImportError:
+    raise ImportError("The numpy package is required for statistics calculations. Please install it.")
+
+try:
+    from . import PrettyPrint as pp
+except ImportError:
+    raise ImportError("The PrettyPrint package is required for pretty printing. Please install it.")
+
+def validate_input(data):
+    """Validate that the input is a list or numpy array."""
+    if not isinstance(data, (list, np.ndarray)):
+        raise TypeError("Input data must be a list or numpy array.")
+    return np.array(data)
+
+def calculate_statistics(data):
+    """Calculate mean, median, and standard deviation of the data."""
+    data_array = validate_input(data)
+    
+    mean = np.mean(data_array)
+    median = np.median(data_array)
+    std_dev = np.std(data_array)
+    
+    return mean, median, std_dev
+
+def print_statistics(data):
+    """Calculate and pretty print the statistics of the data."""
+    mean, median, std_dev = calculate_statistics(data)
+    
+    pp.pprint(f"Mean: {mean}")
+    pp.pprint(f"Median: {median}")
+    pp.pprint(f"Standard Deviation: {std_dev}")
+
+def plot_statistics(data):
+    """Plot histogram of the data with mean and median marked."""
+    try: 
+        from .graphics import plot_histogram  
+    except ImportError:
+        raise ImportError("The graphics module is required for plotting statistics. Please ensure it is available.")
+    
+    data_array = validate_input(data)
+    mean, median, _ = calculate_statistics(data_array)
+    plot_histogram(data_array, mean, median)
