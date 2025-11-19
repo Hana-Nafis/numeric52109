@@ -3,10 +3,23 @@
 ## Execute as 'python test_sp.py'
 ###
 
+"""
+test_sp.py
+---------------
+Test script for verifying functionality of the simple_package.
+Tests basic and advanced mathematical operations, statistics functions, and data visualization.
+
+This file can be run directly:
+    python test_sp.py
+
+It generates random test data, prints results, and displays a histogram for verification purposes.
+"""
+
 import simple_package as sp
 import numpy as np
 
 if __name__ == '__main__':
+
     ## Define two numbers
     a = 1;
     b = 2;
@@ -23,4 +36,8 @@ if __name__ == '__main__':
     data = np.random.randint(0,101,100)
     sp.print_statistics(data)
     sp.plot_statistics(data)
+
+    
+
+    
     

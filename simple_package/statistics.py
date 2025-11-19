@@ -23,6 +23,13 @@
 ##    numpy and matplotlib packages are not installed.
 ##
 
+"""
+statistics.py
+----------------
+Functions for calculating and displaying simple statistics.
+Includes mean, median, std deviation, and histogram plotting.
+"""
+
 try:
     import numpy as np
 except ImportError:
@@ -31,7 +38,7 @@ except ImportError:
 try:
     from . import PrettyPrint as pp
 except ImportError:
-    raise ImportError("The PrettyPrint package is required for pretty printing. Please install it.")
+    raise ImportError("PrettyPrint module not found. Ensure PrettyPrint.py is inside the package.")
 
 def validate_input(data):
     """Validate that the input is a list or numpy array."""

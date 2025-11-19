@@ -25,8 +25,16 @@
 ##    trigonometric functions, logarithms, etc.).
 ##
 
-import math
+"""
+operations.py
+---------------
+Module containing basic and advanced mathematical operations for the simple_package calculator. 
+Includes addition, subtraction, multiplication, division, percentage, powers, exponentials, trigonometric functions, and logarithms.
+Also provides a user-facing calculator interface that allows interactive operation input until the user exits.
+"""
 
+
+import math
 
 def add(a, b):
     """Add two numbers."""
@@ -80,20 +88,50 @@ def logarithm(a, base=math.e):
 
 def calculator_interface():
     """Interface function for the calculator."""
-    print("Welcome to the simple calculator!")
-    print("Available operations: add, subtract, multiply, divide, percent, power, exponential, sine, cosine, tangent, logarithm")
-    print("Type 'exit' to quit.")
+    help_text = """
+Welcome to the simple calculator!
+
+Available operations:
+  add a b         → addition
+  subtract a b    → subtraction
+  multiply a b    → multiplication
+  divide a b      → division
+  percent a b     → a is what % of b
+  power a b       → a^b
+  exponential a   → e^a
+  sine a          → sin(a)
+  cosine a        → cos(a)
+  tangent a       → tan(a)
+  logarithm a b   → log base b (default = e)
+
+Type 'help' to see this list again.
+Type 'exit' to quit.
+"""
+    print(help_text)
     
     while True:
         user_input = input("Enter operation and numbers (e.g., 'add 2 3'): ")
         if user_input.lower() == 'exit':
             print("Exiting the calculator. Goodbye!")
             break
+
+        if user_input.lower() == 'help':
+            print(help_text)
+            continue
         
         try:
             parts = user_input.split()
             operation = parts[0]
             numbers = list(map(float, parts[1:]))
+
+            if len(numbers) < 1:
+                print("Not enough numbers provided.")
+                continue
+            if operation in ["add","subtract","multiply","divide","percent","power"] and len(numbers) != 2:
+                print("This operation requires TWO numbers.")
+                continue
+
+
 
             if operation == 'add':
                 result = add(numbers[0], numbers[1])
@@ -128,4 +166,3 @@ def calculator_interface():
 
         except Exception as e:
             print(f"Error: {e}. Please try again.")
-

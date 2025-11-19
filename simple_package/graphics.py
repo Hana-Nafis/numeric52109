@@ -1,5 +1,10 @@
-'''Plot a histogram of the data, with the mean and median marked on the plot. 
-This should be part of a new Python file in the package, called graphics.py.'''
+"""
+graphics.py
+---------------
+Module for plotting data visualizations for the simple_package.
+Currently includes a function to plot histograms with mean and median lines clearly marked. 
+Uses matplotlib for plotting.
+"""
 
 try:
     import matplotlib.pyplot as plt
