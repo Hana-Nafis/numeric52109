@@ -25,6 +25,9 @@
 ##    trigonometric functions, logarithms, etc.).
 ##
 
+import math
+
+
 def add(a, b):
     """Add two numbers."""
     return a + b
@@ -39,4 +42,90 @@ def multiply(a, b):
 
 def divide(a, b):
     """Divide one number by another."""
+    if b == 0:
+        raise ZeroDivisionError("Cannot divide by zero.")
     return a / b
+
+def percent(a, b):
+    """Calculate what percent a is of b."""
+    if b == 0:
+        raise ZeroDivisionError("Cannot calculate percentage with denominator zero.")
+    return (a / b) * 100
+
+def power(a, b):
+    """Raise a to the power of b."""
+    return a ** b
+
+def exponential(a):
+    """Calculate the exponential of a number."""
+    return math.exp(a)
+
+def sine(a):
+    """Calculate the sine of a number."""
+    return math.sin(a)
+
+def cosine(a):
+    """Calculate the cosine of a number."""
+    return math.cos(a)
+
+def tangent(a):
+    """Calculate the tangent of a number."""
+    return math.tan(a)
+
+def logarithm(a, base=math.e):
+    """Calculate the logarithm of a number with a given base."""
+    if a <= 0:
+        raise ValueError("Logarithm undefined for non-positive values.")
+    return math.log(a, base)
+
+def calculator_interface():
+    """Interface function for the calculator."""
+    print("Welcome to the simple calculator!")
+    print("Available operations: add, subtract, multiply, divide, percent, power, exponential, sine, cosine, tangent, logarithm")
+    print("Type 'exit' to quit.")
+    
+    while True:
+        user_input = input("Enter operation and numbers (e.g., 'add 2 3'): ")
+        if user_input.lower() == 'exit':
+            print("Exiting the calculator. Goodbye!")
+            break
+        
+        try:
+            parts = user_input.split()
+            operation = parts[0]
+            numbers = list(map(float, parts[1:]))
+
+            if operation == 'add':
+                result = add(numbers[0], numbers[1])
+            elif operation == 'subtract':
+                result = subtract(numbers[0], numbers[1])
+            elif operation == 'multiply':
+                result = multiply(numbers[0], numbers[1])
+            elif operation == 'divide':
+                result = divide(numbers[0], numbers[1])
+            elif operation == 'percent':
+                result = percent(numbers[0], numbers[1])
+            elif operation == 'power':
+                result = power(numbers[0], numbers[1])
+            elif operation == 'exponential':
+                result = exponential(numbers[0])
+            elif operation == 'sine':
+                result = sine(numbers[0])
+            elif operation == 'cosine':
+                result = cosine(numbers[0])
+            elif operation == 'tangent':
+                result = tangent(numbers[0])
+            elif operation == 'logarithm':
+                if len(numbers) == 2:
+                    result = logarithm(numbers[0], numbers[1])
+                else:
+                    result = logarithm(numbers[0])
+            else:
+                print("Unknown operation. Please try again.")
+                continue
+
+            print(f"The result is: {result}")
+
+        except Exception as e:
+            print(f"Error: {e}. Please try again.")
+
